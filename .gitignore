@@ -1,0 +1,7 @@
+.env
+__pycahce__/
+connect.py
+venv/
+.venv/
+.vscode/
+.idea/
