@@ -1,12 +1,13 @@
-from gather import gather_information_subreddit, clean_data
+from gather import gather_information_subreddit, is_bot, is_useless
 
 
 pd_Art_long = gather_information_subreddit("ArtistLounge", "relevance", "AI", 5)
 
 pd_Tech = gather_information_subreddit("technology", "relevance", "AI", 5)
-print(pd_Art_long.head(5))
-print(pd_Tech.head(5))
+df_cleaned = pd_Art_long[~pd_Art_long["Comment"].apply(is_bot)]
+df_cleaned2 = df_cleaned[~df_cleaned["Comment"].apply(is_useless)]
 
-# pd_Art_long.to_csv('pdArtLounge.csv', index = False)
 
-# pd_Tech.to_csv('pdTech.csv', index = False)
+df_cleaned2.to_csv('art_longue.csv', index = False)
+print(df_cleaned2)
+
